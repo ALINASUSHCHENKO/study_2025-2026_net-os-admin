@@ -1,0 +1,331 @@
+\input{preamble.tex}
+
+\title{Лабораторная работа № 10. \\ Расширенные настройки SMTP-сервера}
+\author{Сущенко Алина \\ НПИбд-01-23}
+
+\institute{Российский университет дружбы народов имени Патриса Лумумбы}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Цель работы}
+\begin{itemize}
+    \item Приобретение практических навыков по конфигурированию SMTP-сервера в части настройки аутентификации.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка LMTP в Dovecot}
+\begin{enumerate}
+\item На виртуальной машине \texttt{server} вошли под пользователем и открыли терминал. Перешли в режим суперпользователя:
+\begin{minted}{bash}
+sudo -i
+\end{minted}
+\item В дополнительном терминале запустили мониторинг работы почтовой службы:
+\begin{minted}{bash}
+sudo -i
+tail -f /var/log/maillog
+\end{minted}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка LMTP в Dovecot}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Добавили в список протоколов, с которыми может работать Dovecot, протокол LMTP:
+\begin{minted}{bash}
+protocols = imap pop3 lmtp
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/1.png}
+\captionof{figure}{Обновление списка разрешенных протоколов в Dovecot.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка LMTP в Dovecot}
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item Настроили в Dovecot сервис \texttt{lmtp} для связи с Postfix:
+\begin{minted}{bash}
+service lmtp {
+  unix_listener /var/spool/postfix/private/dovecot-lmtp {
+    group = postfix
+    user = postfix
+    mode = 0600
+  }
+}
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/2.png}
+\captionof{figure}{Настройки сервера \texttt{lmtp}.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка LMTP в Dovecot}
+\begin{enumerate}
+\setcounter{enumi}{4}
+\item Переопределили в Postfix передачу сообщений через unix-сокет:
+\begin{minted}{bash}
+postconf -e 'mailbox_transport = lmtp:unix:private/dovecot-lmtp'
+\end{minted}
+\item Задали формат имени пользователя для аутентификации:
+\begin{minted}{bash}
+auth_username_format = %Ln
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/3.png}
+\captionof{figure}{Задание формата имени пользователя для аутентификации.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка LMTP в Dovecot}
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item Перезапустили Postfix и Dovecot:
+\begin{minted}{bash}
+systemctl restart postfix
+systemctl restart dovecot
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/4.png}
+\captionof{figure}{Перезагрузка Postfix и Dovecot.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка LMTP в Dovecot}
+\begin{enumerate}
+\setcounter{enumi}{7}
+\item Отправили тестовое письмо:
+\begin{minted}{bash}
+echo .| mail -s "LMTP test" ansusenko@ansusenko.net
+\end{minted}
+\item Просмотрели почтовый ящик пользователя:
+\begin{minted}{bash}
+MAIL=~/Maildir/ mail
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/5.png}
+\captionof{figure}{Просмотр доставленного письма через утилиту \texttt{mail}.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка LMTP в Dovecot}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/6.png}
+\captionof{figure}{Просмотр логов при отправке письма.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP-аутентификации}
+\begin{enumerate}
+\item Определили службу аутентификации пользователей:
+\begin{minted}{bash}
+service auth {
+  unix_listener /var/spool/postfix/private/auth {
+    group = postfix
+    user = postfix
+    mode = 0660
+  }
+  unix_listener auth-userdb {
+    mode = 0600
+    user = dovecot
+  }
+}
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/7.png}
+\captionof{figure}{Настройка службы аутентификации.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP-аутентификации}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item Задали тип аутентификации SASL для Postfix:
+\begin{minted}{bash}
+postconf -e 'smtpd_sasl_type = dovecot'
+postconf -e 'smtpd_sasl_path = private/auth'
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/8.png}
+\captionof{figure}{Настройка типа аутентификации SASL для \texttt{smtpd}.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP-аутентификации}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Настроили Postfix для защиты от спамрассылок:
+\begin{minted}{bash}
+postconf -e 'smtpd_recipient_restrictions = reject_unknown_recipient_domain, permit_mynetworks, reject_non_fqdn_recipient, reject_unauth_destination, reject_unverified_recipient, permit'
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/9.png}
+\captionof{figure}{Настройка Postfix для запрета спамрассылок.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP-аутентификации}
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item Ограничили приём почты только локальным адресом:
+\begin{minted}{bash}
+postconf -e 'mynetworks = 127.0.0.0/8'
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/10.png}
+\captionof{figure}{Ограничение приема почты только локальным адресом.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP-аутентификации}
+\begin{enumerate}
+\setcounter{enumi}{4}
+\item Настроили SMTP-сервер с возможностью аутентификации:
+\begin{minted}{bash}
+smtp inet n - n - - smtpd
+-o smtpd_sasl_auth_enable=yes
+-o smtpd_recipient_restrictions=reject_non_fqdn_recipient, reject_unknown_recipient_domain, permit_sasl_authenticated, reject
+\end{minted}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP-аутентификации}
+\begin{enumerate}
+\setcounter{enumi}{5}
+\item Перезапустили Postfix и Dovecot:
+\begin{minted}{bash}
+systemctl restart postfix
+systemctl restart dovecot
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/11.png}
+\captionof{figure}{Перезагрузка Postfix и Dovecot.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP-аутентификации}
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item Установили telnet на клиенте:
+\begin{minted}{bash}
+sudo -i
+dnf -y install telnet
+\end{minted}
+\item Протестировали соединение:
+\begin{minted}{bash}
+EHLO test
+AUTH PLAIN <строка для аутентификации>
+\end{minted}
+\end{enumerate}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/12.png}
+\captionof{figure}{Подключение к SMTP-серверу через \texttt{telnet}.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка SMTP over TLS}
+\begin{minted}{bash}
+На Alpine выполним подключение по порту, отправим себе письмо и проверим вывод
+\end{minted}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/13.png}
+\captionof{figure}{Отправка сообщения \texttt{telnet}.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения}
+\begin{enumerate}
+\item Скопировали конфигурационные файлы:
+\begin{minted}{bash}
+cd /vagrant/provision/server
+cp -R /etc/dovecot/dovecot.conf /vagrant/provision/server/mail/etc/dovecot/
+cp -R /etc/dovecot/conf.d/10-master.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
+cp -R /etc/dovecot/conf.d/10-auth.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
+mkdir -p /vagrant/provision/server/mail/etc/postfix/
+cp -R /etc/postfix/master.cf /vagrant/provision/server/mail/etc/postfix/
+\end{minted}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Выводы}
+\begin{itemize}
+    \item В результате выполнения лабораторной работы приобрели практические навыки по конфигурированию SMTP-сервера в части настройки аутентификации.
+    \item Освоили настройку LMTP в Dovecot для интеграции с Postfix.
+    \item Настроили SMTP-аутентификацию с использованием SASL.
+    \item Реализовали защиту почтового сервера от использования в качестве открытого релея.
+    \item Настроили работу SMTP over TLS для безопасной передачи почты.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Контрольные вопросы}
+\begin{block}{1. Приведите пример задания формата аутентификации пользователя в Dovecot в форме логина с указанием домена.}
+\begin{itemize}
+\item Для указания формата логина с доменом используется параметр:
+\begin{minted}{bash}
+auth_username_format = %Lu
+\end{minted}
+\item Альтернативный вариант - указание полного формата:
+\begin{minted}{bash}
+auth_username_format = %n
+\end{minted}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{2. Какие функции выполняет почтовый Relay-сервер?}
+\begin{itemize}
+\item \textbf{Пересылка почты} - передача сообщений между разными почтовыми серверами
+\item \textbf{Кэширование} - временное хранение сообщений при проблемах с доставкой
+\item \textbf{Балансировка нагрузки} - распределение почтового трафика
+\item \textbf{Фильтрация} - проверка почты на спам и вирусы
+\item \textbf{Анонимизация} - скрытие реального источника отправки почты
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{3. Какие угрозы безопасности могут возникнуть в случае настройки почтового сервера как Relay-сервера?}
+\begin{itemize}
+\item \textbf{Спам-рассылки} - использование сервера для массовой рассылки спама
+\item \textbf{Черные списки} - IP-адрес сервера может быть внесен в DNSBL
+\item \textbf{Перегрузка ресурсов} - большой объем несанкционированной почты
+\item \textbf{Компрометация репутации} - ухудшение репутации домена и IP-адреса
+\item \textbf{Юридические риски} - ответственность за рассылку спама
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Меры защиты от угроз Relay-сервера}
+\begin{itemize}
+\item \textbf{Аутентификация} - требовать аутентификацию для отправки почты
+\item \textbf{Ограничение сетей} - настройка \texttt{mynetworks} только для доверенных сетей
+\item \textbf{Проверка получателей} - использование \texttt{smtpd\_recipient\_restrictions}
+\item \textbf{Шифрование} - обязательное использование TLS для передачи почты
+\item \textbf{Мониторинг} - регулярный анализ логов почтовой активности
+\item \textbf{Ограничение квот} - установка лимитов на объем отправляемой почты
+\end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+postconf\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}smtpd\PYGZus{}recipient\PYGZus{}restrictions = reject\PYGZus{}unknown\PYGZus{}recipient\PYGZus{}domain, permit\PYGZus{}mynetworks, reject\PYGZus{}non\PYGZus{}fqdn\PYGZus{}recipient, reject\PYGZus{}unauth\PYGZus{}destination, reject\PYGZus{}unverified\PYGZus{}recipient, permit\PYGZsq{}}
+\end{Verbatim}

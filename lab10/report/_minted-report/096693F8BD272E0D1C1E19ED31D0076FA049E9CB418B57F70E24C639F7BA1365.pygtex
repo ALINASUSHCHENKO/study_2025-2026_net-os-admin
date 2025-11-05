@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }service\PYG{+w}{ }lmtp\PYG{+w}{ }\PYG{o}{\PYGZob{}}
+\PYG{+w}{      }unix\PYGZus{}listener\PYG{+w}{ }/var/spool/postfix/private/dovecot\PYGZhy{}lmtp\PYG{+w}{ }\PYG{o}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nv}{group}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }postfix
+\PYG{+w}{        }\PYG{n+nv}{user}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }postfix
+\PYG{+w}{        }\PYG{n+nv}{mode}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m}{0600}
+\PYG{+w}{      }\PYG{o}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

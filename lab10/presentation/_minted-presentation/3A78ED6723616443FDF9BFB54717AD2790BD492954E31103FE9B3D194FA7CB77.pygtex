@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }\PYGZhy{}i
+tail\PYG{+w}{ }\PYGZhy{}f\PYG{+w}{ }/var/log/maillog
+\end{Verbatim}

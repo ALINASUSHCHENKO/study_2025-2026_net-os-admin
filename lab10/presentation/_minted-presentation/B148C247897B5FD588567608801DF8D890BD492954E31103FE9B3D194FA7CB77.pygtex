@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+smtp\PYG{+w}{ }inet\PYG{+w}{ }n\PYG{+w}{ }\PYGZhy{}\PYG{+w}{ }n\PYG{+w}{ }\PYGZhy{}\PYG{+w}{ }\PYGZhy{}\PYG{+w}{ }smtpd
+\PYGZhy{}o\PYG{+w}{ }\PYG{n+nv}{smtpd\PYGZus{}sasl\PYGZus{}auth\PYGZus{}enable}\PYG{o}{=}yes
+\PYGZhy{}o\PYG{+w}{ }\PYG{n+nv}{smtpd\PYGZus{}recipient\PYGZus{}restrictions}\PYG{o}{=}reject\PYGZus{}non\PYGZus{}fqdn\PYGZus{}recipient,\PYG{+w}{ }reject\PYGZus{}unknown\PYGZus{}recipient\PYGZus{}domain,\PYG{+w}{ }permit\PYGZus{}sasl\PYGZus{}authenticated,\PYG{+w}{ }reject
+\end{Verbatim}

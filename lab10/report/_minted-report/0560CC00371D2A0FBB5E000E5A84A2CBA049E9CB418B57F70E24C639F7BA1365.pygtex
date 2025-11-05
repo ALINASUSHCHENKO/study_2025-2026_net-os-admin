@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }systemctl\PYG{+w}{ }restart\PYG{+w}{ }postfix
+\PYG{+w}{    }systemctl\PYG{+w}{ }restart\PYG{+w}{ }dovecot
+\end{Verbatim}

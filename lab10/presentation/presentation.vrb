@@ -1,0 +1,13 @@
+\frametitle{Контрольные вопросы}
+\begin{block}{1. Приведите пример задания формата аутентификации пользователя в Dovecot в форме логина с указанием домена.}
+\begin{itemize}
+\item Для указания формата логина с доменом используется параметр:
+\begin{minted}{bash}
+auth_username_format = %Lu
+\end{minted}
+\item Альтернативный вариант - указание полного формата:
+\begin{minted}{bash}
+auth_username_format = %n
+\end{minted}
+\end{itemize}
+\end{block}
