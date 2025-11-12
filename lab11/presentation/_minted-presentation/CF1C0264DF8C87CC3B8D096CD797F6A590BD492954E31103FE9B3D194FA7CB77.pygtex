@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }server.vm.provision\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}server ssh\PYGZdq{}},
+\PYG{+w}{    }type:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}shell\PYGZdq{}},
+\PYG{+w}{    }preserve\PYGZus{}order:\PYG{+w}{ }true,
+\PYG{+w}{    }path:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}provision/server/ssh.sh\PYGZdq{}}
+\end{Verbatim}

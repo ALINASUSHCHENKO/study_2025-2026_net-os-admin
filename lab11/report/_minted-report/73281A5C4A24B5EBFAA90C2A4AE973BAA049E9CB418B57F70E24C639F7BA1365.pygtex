@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }sudo\PYG{+w}{ }\PYGZhy{}i
+\PYG{+w}{    }journalctl\PYG{+w}{ }\PYGZhy{}x\PYG{+w}{ }\PYGZhy{}f
+\end{Verbatim}

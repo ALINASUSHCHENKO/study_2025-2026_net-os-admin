@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ssh\PYG{+w}{ }\PYGZhy{}f\PYG{+w}{ }\PYGZhy{}N\PYG{+w}{ }\PYGZhy{}L\PYG{+w}{ }локальный\PYGZus{}порт:удаленный\PYGZus{}хост:удаленный\PYGZus{}порт\PYG{+w}{ }пользователь@сервер
+\end{Verbatim}

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{c+c1}{\PYGZsh{}!/bin/bash}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Provisioning script }\PYG{n+nv}{\PYGZdl{}0}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Copy configuration files\PYGZdq{}}
+\PYG{+w}{    }cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/vagrant/provision/server/ssh/etc/*\PYG{+w}{ }/etc
+\PYG{+w}{    }restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/etc
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Configure firewall\PYGZdq{}}
+\PYG{+w}{    }firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}port\PYG{o}{=}\PYG{l+m}{2022}/tcp
+\PYG{+w}{    }firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}port\PYG{o}{=}\PYG{l+m}{2022}/tcp\PYG{+w}{ }\PYGZhy{}\PYGZhy{}permanent
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Tuning SELinux\PYGZdq{}}
+\PYG{+w}{    }semanage\PYG{+w}{ }port\PYG{+w}{ }\PYGZhy{}a\PYG{+w}{ }\PYGZhy{}t\PYG{+w}{ }ssh\PYGZus{}port\PYGZus{}t\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }tcp\PYG{+w}{ }\PYG{l+m}{2022}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Restart sshd service\PYGZdq{}}
+\PYG{+w}{    }systemctl\PYG{+w}{ }restart\PYG{+w}{ }sshd
+\end{Verbatim}

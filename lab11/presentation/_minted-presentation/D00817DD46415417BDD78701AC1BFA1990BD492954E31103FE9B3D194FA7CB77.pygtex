@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ssh\PYG{+w}{ }\PYGZhy{}L\PYG{+w}{ }\PYG{l+m}{5555}:server2.example.com:80\PYG{+w}{ }пользователь@промежуточный\PYGZus{}сервер
+\end{Verbatim}

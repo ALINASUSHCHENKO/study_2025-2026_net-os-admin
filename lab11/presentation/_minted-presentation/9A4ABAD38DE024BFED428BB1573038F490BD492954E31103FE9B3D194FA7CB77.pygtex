@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+PermitRootLogin\PYG{+w}{ }no
+AllowUsers\PYG{+w}{ }alice
+\end{Verbatim}

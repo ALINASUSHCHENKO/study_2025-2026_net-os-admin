@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{n+nb}{cd}\PYG{+w}{ }/vagrant/provision/server
+\PYG{+w}{    }mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/vagrant/provision/server/ssh/etc/ssh
+\PYG{+w}{    }cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/etc/ssh/sshd\PYGZus{}config\PYG{+w}{ }/vagrant/provision/server/ssh/etc/ssh/
+\end{Verbatim}

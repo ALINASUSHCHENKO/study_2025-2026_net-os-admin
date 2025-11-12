@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+iptables\PYG{+w}{ }\PYGZhy{}A\PYG{+w}{ }INPUT\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }tcp\PYG{+w}{ }\PYGZhy{}\PYGZhy{}dport\PYG{+w}{ }\PYG{l+m}{2022}\PYG{+w}{ }\PYGZhy{}j\PYG{+w}{ }ACCEPT
+service\PYG{+w}{ }iptables\PYG{+w}{ }save
+\end{Verbatim}

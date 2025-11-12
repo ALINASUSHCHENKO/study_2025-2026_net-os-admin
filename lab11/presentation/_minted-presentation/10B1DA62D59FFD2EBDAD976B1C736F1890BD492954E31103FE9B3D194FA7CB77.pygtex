@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}port\PYG{o}{=}\PYG{l+m}{2022}/tcp
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}port\PYG{o}{=}\PYG{l+m}{2022}/tcp\PYG{+w}{ }\PYGZhy{}\PYGZhy{}permanent
+\end{Verbatim}

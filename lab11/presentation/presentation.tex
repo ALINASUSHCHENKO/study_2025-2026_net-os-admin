@@ -1,0 +1,295 @@
+\input{preamble.tex}
+
+\title{Лабораторная работа № 11. \\ Настройка безопасного удалённого доступа по протоколу SSH}
+\author{Сущенко Алина \\ НПИбд-01-23}
+\institute{Российский университет дружбы народов имени Патриса Лумумбы}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Цель работы}
+\begin{itemize}
+    \item Приобретение практических навыков по настройке удалённого доступа к серверу с помощью SSH.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Запрет удалённого доступа по SSH для пользователя root}
+  \centering
+  \includegraphics[width=\textwidth]{../images/1.png}
+  \captionof{figure}{Задание пароля для пользователя root.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Запрет удалённого доступа по SSH для пользователя root}
+Запретили пользователю root подключение к серверу через SSH:
+  \begin{minted}{bash}
+    PermitRootLogin no
+  \end{minted}
+  \centering
+  \includegraphics[width=\textwidth]{../images/2.png}
+  \captionof{figure}{Подключение к серверу через SSH-соединение.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ограничение списка пользователей для удалённого доступа по SSH}
+  \centering
+  \includegraphics[width=\textwidth]{../images/3.png}
+  \captionof{figure}{Успешное подключение к серверу пользователем ansusenko.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ограничение списка пользователей для удалённого доступа по SSH}
+Явно указали разрешенных к подключению пользователей:
+  \begin{minted}{bash}
+    AllowUsers vagrant
+  \end{minted}
+  \centering
+  \includegraphics[width=\textwidth]{../images/4.png}
+  \captionof{figure}{Отказ в доступе на сервер пользователю ansusenko.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ограничение списка пользователей для удалённого доступа по SSH}
+Обновили список разрешенных пользователей:
+  \begin{minted}{bash}
+    AllowUsers vagrant ansusenko
+  \end{minted}
+  \centering
+  \includegraphics[width=\textwidth]{../images/5.png}
+  \captionof{figure}{Восстановление доступа на сервер пользователю ansusenko.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
+В файле конфигурации \texttt{sshd\_config} добавили строки:
+  \begin{minted}{bash}
+    Port 22
+    Port 2022
+  \end{minted}
+  \centering
+  \includegraphics[width=\textwidth]{../images/6.png}
+  \captionof{figure}{Проверка расширенного статуса работы sshd.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
+  \centering
+  \includegraphics[width=\textwidth]{../images/7.png}
+  \captionof{figure}{Настройка межсетевого экрана.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
+  \centering
+  \includegraphics[width=\textwidth]{../images/8.png}
+  \captionof{figure}{Успешное подключение к серверу.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
+  \centering
+  \includegraphics[width=\textwidth]{../images/9.png}
+  \captionof{figure}{Успешное подключение к серверу по порту 2022.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка удалённого доступа по SSH по ключу}
+  \centering
+  \includegraphics[width=\textwidth]{../images/10.png}
+  \captionof{figure}{Копирование открытого ключа на сервер.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка удалённого доступа по SSH по ключу}
+  \centering
+  \includegraphics[width=\textwidth]{../images/11.png}
+  \captionof{figure}{Успешное подключение к серверу с использованием SSH-ключа.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Организация туннелей SSH, перенаправление TCP-портов}
+  \centering
+  \includegraphics[width=\textwidth]{../images/12.png}
+  \captionof{figure}{Перенаправление TCP-портов.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Запуск консольных приложений через SSH}
+  \centering
+  \includegraphics[width=\textwidth]{../images/13.png}
+  \captionof{figure}{Просмотр имени узла сервера и списка файлов через ssh.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Запуск консольных приложений через SSH}
+  \centering
+  \includegraphics[width=\textwidth]{../images/14.png}
+  \captionof{figure}{Просмотр почты на сервере через ssh.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Запуск графических приложений через SSH (X11Forwarding)}
+Разрешили отображать на локальном клиентском компьютере графические интерфейсы X11:
+  \begin{minted}{bash}
+    X11Forwarding yes
+  \end{minted}
+Запустили графическое приложение на сервере:
+  \begin{minted}{bash}
+    ssh -Y -v ansusenko@server.ansusenko.net firefox
+  \end{minted}
+  \centering
+  \includegraphics[width=0.7\textwidth]{../images/15.png}
+  \captionof{figure}{Просмотр графического приложения (firefox) через ssh.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
+  \begin{minted}[breaklines]{bash}
+    cd /vagrant/provision/server
+    mkdir -p /vagrant/provision/server/ssh/etc/ssh
+    cp -R /etc/ssh/sshd_config /vagrant/provision/server/ssh/etc/ssh/
+    cd /vagrant/provision/server
+    touch ssh.sh
+    chmod +x ssh.sh
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
+  \begin{minted}[breaklines]{bash}
+    #!/bin/bash
+    echo "Provisioning script $0"
+    echo "Copy configuration files"
+    cp -R /vagrant/provision/server/ssh/etc/* /etc
+    restorecon -vR /etc
+    echo "Configure firewall"
+    firewall-cmd --add-port=2022/tcp
+    firewall-cmd --add-port=2022/tcp --permanent
+    echo "Tuning SELinux"
+    semanage port -a -t ssh_port_t -p tcp 2022
+    echo "Restart sshd service"
+    systemctl restart sshd
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
+\begin{minted}{bash}
+    server.vm.provision "server ssh",
+    type: "shell",
+    preserve_order: true,
+    path: "provision/server/ssh.sh"
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \item \textbf{Как запретить удалённый доступ по SSH пользователю root и разрешить пользователю alice?}
+    
+    В файле \texttt{/etc/ssh/sshd\_config} нужно установить:
+    \begin{minted}{bash}
+PermitRootLogin no
+AllowUsers alice
+    \end{minted}
+    Затем перезапустить службу: \texttt{systemctl restart sshd}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{1}
+    \item \textbf{Как настроить удалённый доступ по SSH через несколько портов? Для чего это может потребоваться?}
+    
+    В файле \texttt{/etc/ssh/sshd\_config} добавить:
+    \begin{minted}{bash}
+Port 22
+Port 2022
+    \end{minted}
+    Это может потребоваться для:
+    \begin{itemize}
+        \item Резервного подключения при блокировке основного порта
+        \item Разделения доступа для разных групп пользователей
+        \item Обхода ограничений межсетевого экрана
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{2}
+    \item \textbf{Какие параметры используются для создания туннеля SSH в фоновом режиме?}
+    
+    Используются параметры:
+    \begin{minted}{bash}
+ssh -f -N -L локальный_порт:удаленный_хост:удаленный_порт пользователь@сервер
+    \end{minted}
+    где:
+    \begin{itemize}
+        \item \texttt{-f} - переход в фоновый режим
+        \item \texttt{-N} - не выполнять удалённую команду
+        \item \texttt{-L} - локальная переадресация портов
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{3}
+    \item \textbf{Как настроить локальную переадресацию с локального порта 5555 на порт 80 сервера server2.example.com?}
+    
+    \begin{minted}{bash}
+ssh -L 5555:server2.example.com:80 пользователь@промежуточный_сервер
+    \end{minted}
+    После этого обращение к \texttt{localhost:5555} будет перенаправляться на \texttt{server2.example.com:80} через промежуточный сервер.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{4}
+    \item \textbf{Как настроить SELinux для работы SSH с портом 2022?}
+    
+    \begin{minted}{bash}
+semanage port -a -t ssh_port_t -p tcp 2022
+    \end{minted}
+    Эта команда добавляет порт 2022 в список разрешённых портов для SSH в SELinux.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{5}
+    \item \textbf{Как настроить межсетевой экран для разрешения SSH через порт 2022?}
+    
+    Для firewalld:
+    \begin{minted}{bash}
+firewall-cmd --add-port=2022/tcp
+firewall-cmd --add-port=2022/tcp --permanent
+    \end{minted}
+    Для iptables:
+    \begin{minted}{bash}
+iptables -A INPUT -p tcp --dport 2022 -j ACCEPT
+service iptables save
+    \end{minted}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Выводы}
+\begin{itemize}
+    \item В результате выполнения лабораторной работы приобрели практические навыки по настройке удалённого доступа к серверу с помощью SSH.
+    \item Освоили методы ограничения доступа пользователей и настройки дополнительных портов.
+    \item Изучили организацию туннелей SSH и настройку аутентификации по ключам.
+\end{itemize}
+\end{frame}
+\end{document}

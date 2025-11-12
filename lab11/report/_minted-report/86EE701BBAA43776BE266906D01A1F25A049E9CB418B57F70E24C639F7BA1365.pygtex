@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }sudo\PYG{+w}{ }\PYGZhy{}i
+\PYG{+w}{    }passwd\PYG{+w}{ }root
+\end{Verbatim}
