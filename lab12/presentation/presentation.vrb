@@ -1,0 +1,11 @@
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+  \begin{minted}{bash}
+    server.vm.provision "server ntp",
+    type: "shell",
+    preserve_order: true,
+    path: "provision/server/ntp.sh"
+    client.vm.provision "client ntp",
+    type: "shell",
+    preserve_order: true,
+    path: "provision/client/ntp.sh"
+  \end{minted}

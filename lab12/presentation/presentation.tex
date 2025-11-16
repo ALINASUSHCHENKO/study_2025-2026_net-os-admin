@@ -1,0 +1,247 @@
+\input{preamble.tex}
+
+\title{Лабораторная работа № 12. \\Синхронизация времени}
+\author{Сущенко Алина \\ НПИбд-01-23}
+\institute{Российский университет дружбы народов имени Патриса Лумумбы}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Цель работы}
+  \begin{itemize}
+  \item Получение навыков по управлению системным временем и настройке синхронизации времени.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Настройка параметров времени}
+  \centering
+  \includegraphics[width=\textwidth]{../images/1.png}
+  \captionof{figure}{Информация о дате и времени на сервере (timedatectl).}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Настройка параметров времени}
+  \centering
+  \includegraphics[width=\textwidth]{../images/2.png}
+  \captionof{figure}{Информация о дате и времени на клиенте (timedatectl).}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Настройка параметров времени}
+  \centering
+  \includegraphics[width=\textwidth]{../images/4.png}
+  \captionof{figure}{Вывод команды \texttt{date} на сервере.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Настройка параметров времени}
+  \centering
+  \includegraphics[width=\textwidth]{../images/3.png}
+  \captionof{figure}{Вывод команды \texttt{date} на клиенте.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Управление синхронизацией времени}
+  \begin{minted}{bash}
+    dnf -y install chrony
+  \end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Управление синхронизацией времени}
+    \centering
+    \includegraphics[width=\textwidth]{../images/5.png}
+    \captionof{figure}{Проверка источников времени на клиенте.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Управление синхронизацией времени}
+На сервере открыли на редактирование файл \texttt{/etc/chrony.conf} и добавили строку:
+  \begin{minted}{bash}
+    allow 192.168.0.0/16
+  \end{minted}
+    \centering
+    \includegraphics[width=\textwidth]{../images/6.png}
+    \captionof{figure}{Строчка в конфиурационном файле.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Управление синхронизацией времени}
+\centering
+    \includegraphics[width=\textwidth]{../images/7.png}
+    \captionof{figure}{Перезапуск \texttt{chronyd} и настройка межсетевого экрана.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Управление синхронизацией времени}
+    \centering
+    \includegraphics[width=\textwidth]{../images/8.png}
+    \captionof{figure}{Изменение файла конфигурации \texttt{chrony}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Управление синхронизацией времени}
+    \centering
+    \includegraphics[width=\textwidth]{../images/10.png}
+    \captionof{figure}{Просмотр источников времени на сервере.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+    \centering
+    \includegraphics[width=\textwidth]{../images/9.png}
+    \captionof{figure}{Проверка добавленного источника времени на клиенте.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+  \begin{minted}{bash}
+    #!/bin/bash
+    echo "Provisioning script $0"
+    echo "Install needed packages"
+    dnf -y install chrony
+    echo "Copy configuration files"
+    cp -R /vagrant/provision/server/ntp/etc/* /etc
+    restorecon -vR /etc
+    echo "Configure firewall"
+    firewall-cmd --add-service=ntp
+    firewall-cmd --add-service=ntp --permanent
+    echo "Restart chronyd service"
+    systemctl restart chronyd
+  \end{minted}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+    \centering
+    \includegraphics[width=\textwidth]{../images/11.png}
+    \captionof{figure}{Настройка внутреннего окружения виртуальной машины клиента.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+  \begin{minted}{bash}
+    #!/bin/bash
+    echo "Provisioning script $0"
+    echo "Copy configuration files"
+    cp -R /vagrant/provision/client/ntp/etc/* /etc
+    restorecon -vR /etc
+    echo "Restart chronyd service"
+    systemctl restart chronyd
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+  \begin{minted}{bash}
+    server.vm.provision "server ntp",
+    type: "shell",
+    preserve_order: true,
+    path: "provision/server/ntp.sh"
+    client.vm.provision "client ntp",
+    type: "shell",
+    preserve_order: true,
+    path: "provision/client/ntp.sh"
+  \end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{enumerate}
+    \item Почему важна точная синхронизация времени для служб баз данных?
+    \item Почему служба проверки подлинности Kerberos сильно зависит от правильной синхронизации времени?
+    \item Какая служба используется по умолчанию для синхронизации времени на RHEL 7?
+    \item Какова страта по умолчанию для локальных часов?
+    \item Какой порт брандмауэра должен быть открыт, если вы настраиваете свой сервер как одноранговый узел NTP?
+    \item Какую строку вам нужно включить в конфигурационный файл chrony, если вы хотите быть сервером времени, даже если внешние серверы NTP недоступны?
+    \item Какую страту имеет хост, если нет текущей синхронизации времени NTP?
+    \item Какую команду вы бы использовали на сервере с chrony, чтобы узнать, с какими серверами он синхронизируется?
+    \item Как вы можете получить подробную статистику текущих настроек времени для процесса chrony вашего сервера?
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \item \textbf{Точная синхронизация времени важна для служб баз данных} потому что обеспечивает корректность временных меток транзакций, согласованность репликации данных между серверами и предотвращает конфликты при распределенных операциях.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item \textbf{Kerberos сильно зависит от синхронизации времени} потому что использует временные метки в билетах аутентификации для предотвращения replay-атак. Расхождение во времени более 5 минут обычно приводит к отказу в аутентификации.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item \textbf{В RHEL 7 по умолчанию используется служба chronyd} для синхронизации времени.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item \textbf{Страта по умолчанию для локальных часов} равна 10, что указывает на их низкую точность по сравнению с внешними NTP-серверами.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item \textbf{Для NTP-сервера нужно открыть порт 123/UDP}, который используется для протокола NTP.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item \textbf{Нужно добавить строку:} \texttt{local stratum 10} в файл \texttt{/etc/chrony.conf}, чтобы сервер мог работать как источник времени даже при отсутствии внешних серверов.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{6}
+    \item \textbf{При отсутствии синхронизации NTP хост имеет страту 16}, что означает несинхронизированное состояние.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{7}
+    \item \textbf{Команда для просмотра серверов синхронизации:} \texttt{chronyc sources} или \texttt{chronyc sources -v}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+    \setcounter{enumi}{8}
+    \item \textbf{Для получения подробной статистики используется команда:} \texttt{chronyc tracking} - показывает детальную информацию о текущих настройках времени и статистике синхронизации.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Выводы}
+\begin{itemize}
+    \item В результате выполнения лабораторной работы получили навыки по управлению системным временем и настройке синхронизации времени.
+    \item Освоили работу с chrony для настройки NTP-сервера и клиента.
+    \item Изучили основные команды для мониторинга и управления синхронизацией времени.
+\end{itemize}
+\end{frame}
+\end{document}
