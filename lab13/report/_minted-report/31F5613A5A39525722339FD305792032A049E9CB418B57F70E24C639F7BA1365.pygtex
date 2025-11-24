@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Provisioning script }\PYG{n+nv}{\PYGZdl{}0}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Install needed packages\PYGZdq{}}
+dnf\PYG{+w}{ }\PYGZhy{}y\PYG{+w}{ }install\PYG{+w}{ }nfs\PYGZhy{}utils
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Mounting dirs\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/mnt/nfs
+mount\PYG{+w}{ }server.dastarikov.net:/srv/nfs\PYG{+w}{ }/mnt/nfs
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}server.dastarikov.net:/srv/nfs /mnt/nfs nfs \PYGZus{}netdev 0 0\PYGZdq{}}\PYG{+w}{ }\PYGZgt{}\PYGZgt{}\PYG{+w}{ }/etc/fstab
+restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/etc
+\end{Verbatim}

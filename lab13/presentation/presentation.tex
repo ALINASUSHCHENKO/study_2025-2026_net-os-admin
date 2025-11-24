@@ -1,0 +1,202 @@
+\input{preamble.tex}
+
+\title{Лабораторная работа № 13. \\ Настройка NFS}
+\author{Сущенко Алина \\ НПИбд-01-23}
+\institute{Российский университет дружбы народов имени Патриса Лумумбы}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Цель работы}
+\begin{itemize}
+    \item Приобретение навыков настройки сервера NFS для удалённого доступа к ресурсам.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/1.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/2.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/3.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/4.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/5.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/6.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/7.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки сервера NFSv4}
+    \includegraphics[width=\textwidth]{../images/8.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование NFS на клиенте}
+    \includegraphics[width=\textwidth]{../images/9.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование NFS на клиенте}
+    \includegraphics[width=\textwidth]{../images/10.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование NFS на клиенте}
+    \includegraphics[width=\textwidth]{../images/11.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование NFS на клиенte}
+    \includegraphics[width=\textwidth]{../images/12.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование NFS на клиенте}
+    \includegraphics[width=\textwidth]{../images/13.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов к дереву NFS}
+    \includegraphics[width=\textwidth]{../images/15.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов к дереву NFS}
+    \includegraphics[width=\textwidth]{../images/13.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов к дереву NFS}
+    \includegraphics[width=\textwidth]{../images/14.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов к дереву NFS}
+    \includegraphics[width=\textwidth]{../images/15.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов к дереву NFS}
+    \includegraphics[width=\textwidth]{../images/16.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов к дереву NFS}
+    \includegraphics[width=\textwidth]{../images/17.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов для работы пользователей}
+    \includegraphics[width=\textwidth]{../images/18.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов для работы пользователей}
+    \includegraphics[width=\textwidth]{../images/19.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов для работы пользователей}
+    \includegraphics[width=\textwidth]{../images/20.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов для работы пользователей}
+    \includegraphics[width=\textwidth]{../images/21.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Подключение каталогов для работы пользователей}
+    \includegraphics[width=\textwidth]{../images/23.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы 1}
+\textbf{1. Как называется файл конфигурации, содержащий общие ресурсы NFS?}
+
+Основной файл конфигурации NFS: \texttt{/etc/exports}
+
+В этом файле указываются:
+\begin{itemize}
+\item Экспортируемые каталоги
+\item Разрешенные клиенты или сети  
+\item Права доступа (ro/rw)
+\item Дополнительные опции
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы 2}
+\textbf{2. Какие порты должны быть открыты в брандмауэре?}
+
+Необходимые службы:
+\begin{itemize}
+\item \texttt{nfs} - порт 2049
+\item \texttt{mountd} - динамический порт
+\item \texttt{rpc-bind} - порт 111
+\item \texttt{nfs3} - для NFSv3
+\end{itemize}
+
+Команды для FirewallD:
+\begin{itemize}
+\item \texttt{firewall-cmd --add-service=nfs --permanent}
+\item \texttt{firewall-cmd --add-service=mountd --permanent}
+\item \texttt{firewall-cmd --add-service=rpc-bind --permanent}
+\item \texttt{firewall-cmd --reload}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы 3}
+\textbf{3. Опция для автоматического монтирования NFS при перезагрузке?}
+
+Опция: \texttt{\_netdev}
+
+Пример записи в \texttt{/etc/fstab}:
+\begin{center}
+\texttt{server.ansusenko.net:/srv/nfs /mnt/nfs nfs \_netdev 0 0}
+\end{center}
+
+\begin{itemize}
+\item \texttt{\_netdev} - ждет инициализации сети
+\item \texttt{nfs} - тип файловой системы
+\item \texttt{0 0} - параметры для dump/fsck
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Выводы}
+\begin{itemize}
+    \item Приобрели навыки настройки сервера NFS
+    \item Настроили удаленный доступ к ресурсам
+    \item Создали каталоги для веб-сервера и пользователей
+\end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+lsof\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }grep\PYG{+w}{ }TCP
+lsof\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }grep\PYG{+w}{ }UDP
+\end{Verbatim}

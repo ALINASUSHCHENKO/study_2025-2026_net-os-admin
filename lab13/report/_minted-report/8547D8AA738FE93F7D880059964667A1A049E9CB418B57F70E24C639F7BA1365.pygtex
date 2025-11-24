@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+server.vm.provision\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}server nfs\PYGZdq{}},
+type:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}shell\PYGZdq{}},
+preserve\PYGZus{}order:\PYG{+w}{ }true,
+path:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}provision/server/nfs.sh\PYGZdq{}}
+client.vm.provision\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}client nfs\PYGZdq{}},
+type:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}shell\PYGZdq{}},
+preserve\PYGZus{}order:\PYG{+w}{ }true,
+path:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}provision/client/nfs.sh\PYGZdq{}}
+\end{Verbatim}

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/mnt/nfs
+mount\PYG{+w}{ }server.ansusenko.net:/srv/nfs\PYG{+w}{ }/mnt/nfs
+\end{Verbatim}

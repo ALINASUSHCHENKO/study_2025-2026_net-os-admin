@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/vagrant/provision/server
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/vagrant/provision/server/nfs/etc
+cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/etc/exports\PYG{+w}{ }/vagrant/provision/server/nfs/etc/
+\end{Verbatim}

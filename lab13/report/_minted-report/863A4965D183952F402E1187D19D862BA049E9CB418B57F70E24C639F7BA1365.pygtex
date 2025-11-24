@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+systemctl\PYG{+w}{ }start\PYG{+w}{ }firewalld
+\end{Verbatim}

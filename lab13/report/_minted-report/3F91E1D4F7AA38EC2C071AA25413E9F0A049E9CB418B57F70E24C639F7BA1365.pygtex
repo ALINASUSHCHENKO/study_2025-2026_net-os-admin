@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }postconf\PYG{+w}{ }inet\PYGZus{}interfaces
+\PYG{+w}{    }postconf\PYG{+w}{ }mynetworks
+\end{Verbatim}

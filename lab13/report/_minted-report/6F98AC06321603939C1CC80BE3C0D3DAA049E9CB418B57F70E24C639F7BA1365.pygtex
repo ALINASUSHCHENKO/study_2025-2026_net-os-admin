@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/vagrant/provision/client
+touch\PYG{+w}{ }nfs.sh
+chmod\PYG{+w}{ }+x\PYG{+w}{ }nfs.sh
+\end{Verbatim}

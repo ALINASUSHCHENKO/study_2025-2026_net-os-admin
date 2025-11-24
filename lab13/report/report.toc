@@ -1,0 +1,9 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
+\contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Настройки сервера NFSv4}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Монтирование NFS на клиенте}{9}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Подключение каталогов к дереву NFS}{10}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Подключение каталогов для работы пользователей}{12}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Внесение изменений в настройки внутреннего окружения виртуальных машин}{15}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Выводы}{16}{section.3}%

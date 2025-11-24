@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Просмотр всей очереди сообщений}
+postqueue\PYG{+w}{ }\PYGZhy{}p
+
+\PYG{c+c1}{\PYGZsh{} Подсчет числа сообщений в очереди}
+postqueue\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }grep\PYG{+w}{ }\PYGZhy{}c\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZca{}[A\PYGZhy{}F0\PYGZhy{}9]\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Альтернативный способ подсчета}
+mailq\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }wc\PYG{+w}{ }\PYGZhy{}l
+
+\PYG{c+c1}{\PYGZsh{} Принудительная отправка всех сообщений в очереди}
+postqueue\PYG{+w}{ }\PYGZhy{}f
+
+\PYG{c+c1}{\PYGZsh{} Принудительная отправка сообщений для определенного домена}
+postqueue\PYG{+w}{ }\PYGZhy{}s\PYG{+w}{ }example.com
+
+\PYG{c+c1}{\PYGZsh{} Удаление всех сообщений из очереди}
+postsuper\PYG{+w}{ }\PYGZhy{}d\PYG{+w}{ }ALL
+
+\PYG{c+c1}{\PYGZsh{} Удаление конкретного сообщения по ID}
+postsuper\PYG{+w}{ }\PYGZhy{}d\PYG{+w}{ }A1B2C3D4E5
+
+\PYG{c+c1}{\PYGZsh{} Удаление всех отложенных сообщений}
+postsuper\PYG{+w}{ }\PYGZhy{}d\PYG{+w}{ }ALL\PYG{+w}{ }deferred
+\end{Verbatim}

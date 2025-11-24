@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}get\PYGZhy{}services
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{o}{=}mountd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{o}{=}rpc\PYGZhy{}bind
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{o}{=}mountd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{o}{=}rpc\PYGZhy{}bind\PYG{+w}{ }\PYGZhy{}\PYGZhy{}permanent
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}reload
+\end{Verbatim}

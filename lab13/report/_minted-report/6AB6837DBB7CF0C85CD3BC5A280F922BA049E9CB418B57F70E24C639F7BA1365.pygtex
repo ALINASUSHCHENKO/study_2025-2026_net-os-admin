@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }client.vm.provision\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}client mail\PYGZdq{}},
+\PYG{+w}{    }type:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}shell\PYGZdq{}},
+\PYG{+w}{    }preserve\PYGZus{}order:\PYG{+w}{ }true,
+\PYG{+w}{    }path:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}provision/client/mail.sh\PYGZdq{}}
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }\PYG{l+m}{700}\PYG{+w}{ }\PYGZti{}/common
+\PYG{n+nb}{cd}\PYG{+w}{ }\PYGZti{}/common
+touch\PYG{+w}{ }ansusenko@server.txt
+\end{Verbatim}
