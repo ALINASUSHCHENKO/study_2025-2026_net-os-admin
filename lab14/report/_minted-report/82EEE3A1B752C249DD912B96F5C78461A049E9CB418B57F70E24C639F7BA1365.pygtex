@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }postfix\PYG{+w}{ }check
+\PYG{+w}{    }systemctl\PYG{+w}{ }reload\PYG{+w}{ }postfix
+\PYG{+w}{    }systemctl\PYG{+w}{ }stop\PYG{+w}{ }postfix
+\PYG{+w}{    }systemctl\PYG{+w}{ }start\PYG{+w}{ }postfix
+\end{Verbatim}

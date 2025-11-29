@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{o}{=}samba\PYGZhy{}client
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{o}{=}samba\PYGZhy{}client\PYG{+w}{ }\PYGZhy{}\PYGZhy{}permanent
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}reload
+\end{Verbatim}

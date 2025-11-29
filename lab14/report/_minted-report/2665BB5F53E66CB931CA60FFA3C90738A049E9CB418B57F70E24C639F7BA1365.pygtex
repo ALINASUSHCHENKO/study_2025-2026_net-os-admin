@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+server\PYG{+w}{ }min\PYG{+w}{ }\PYG{n+nv}{protocol}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }NT1
+client\PYG{+w}{ }min\PYG{+w}{ }\PYG{n+nv}{protocol}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }NT1
+\end{Verbatim}

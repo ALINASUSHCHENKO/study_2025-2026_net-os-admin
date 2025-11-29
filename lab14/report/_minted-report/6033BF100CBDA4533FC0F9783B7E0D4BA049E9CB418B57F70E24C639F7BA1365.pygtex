@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{[}sambashare\PYG{o}{]}
+\PYG{n+nv}{comment}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }My\PYG{+w}{ }Samba\PYG{+w}{ }Share
+\PYG{n+nv}{path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }/srv/sambashare
+write\PYG{+w}{ }\PYG{n+nv}{list}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }@sambagroup
+\end{Verbatim}

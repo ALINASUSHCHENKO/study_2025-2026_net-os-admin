@@ -1,8 +1,11 @@
+# FILES=$(patsubst %.*, %., main.tex)
+# FILES += $(patsubst %.md, %.pdf, $(wildcard *.md))
 all:
-	-@quarto render
+	pdflatex --shell-escape report.tex -interaction=scrollmode
+	pdflatex --shell-escape report.tex -interaction=scrollmode
+	pdflatex --shell-escape report.tex -interaction=scrollmode
+draft:
+	pdflatex --shell-escape report.tex -interaction=scrollmode -draftmode
 
-clean:
-	-rm -rf _output
-
-cleanall: clean
-	-rm -rf .quarto
+print:
+	ls main.*

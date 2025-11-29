@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+groupadd\PYG{+w}{ }\PYGZhy{}g\PYG{+w}{ }\PYG{l+m}{1010}\PYG{+w}{ }sambagroup
+usermod\PYG{+w}{ }\PYGZhy{}aG\PYG{+w}{ }sambagroup\PYG{+w}{ }ansusenko
+\end{Verbatim}

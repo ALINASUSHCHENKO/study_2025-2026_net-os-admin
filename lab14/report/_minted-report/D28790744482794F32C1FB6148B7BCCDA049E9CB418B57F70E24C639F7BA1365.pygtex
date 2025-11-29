@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+\PYG{n+nv}{LOGIN}\PYG{o}{=}dastarikov
+\PYG{n+nv}{PASS}\PYG{o}{=}\PYG{l+m}{123456}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Provisioning script }\PYG{n+nv}{\PYGZdl{}0}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Install needed packages\PYGZdq{}}
+dnf\PYG{+w}{ }\PYGZhy{}y\PYG{+w}{ }install\PYG{+w}{ }samba\PYG{+w}{ }samba\PYGZhy{}client\PYG{+w}{ }cifs\PYGZhy{}utils
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Copy configuration files\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/vagrant/provision/server/smb/etc/*\PYG{+w}{ }/etc
+chown\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }root:root\PYG{+w}{ }/etc/samba/*
+restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/etc
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Configure firewall\PYGZdq{}}
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{+w}{ }samba\PYG{+w}{ }\PYGZhy{}\PYGZhy{}permanent
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}reload
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Users and groups\PYGZdq{}}
+groupadd\PYG{+w}{ }\PYGZhy{}g\PYG{+w}{ }\PYG{l+m}{1010}\PYG{+w}{ }sambagroup
+usermod\PYG{+w}{ }\PYGZhy{}aG\PYG{+w}{ }sambagroup\PYG{+w}{ }\PYG{n+nv}{\PYGZdl{}LOGIN}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}ne\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}PASS}\PYG{l+s+s2}{\PYGZbs{}n}\PYG{n+nv}{\PYGZdl{}PASS}\PYG{l+s+s2}{\PYGZbs{}n\PYGZdq{}}\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }smbpasswd\PYG{+w}{ }\PYGZhy{}L\PYG{+w}{ }\PYGZhy{}a\PYG{+w}{ }\PYGZhy{}s\PYG{+w}{ }\PYG{n+nv}{\PYGZdl{}LOGIN}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Make share dir\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/srv/sambashare
+chgrp\PYG{+w}{ }sambagroup\PYG{+w}{ }/srv/sambashare
+chmod\PYG{+w}{ }\PYG{n+nv}{g}\PYG{o}{=}rwx\PYG{+w}{ }/srv/sambashare
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Tuning SELinux\PYGZdq{}}
+semanage\PYG{+w}{ }fcontext\PYG{+w}{ }\PYGZhy{}a\PYG{+w}{ }\PYGZhy{}t\PYG{+w}{ }samba\PYGZus{}share\PYGZus{}t\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}/srv/sambashare(/.*)?\PYGZdq{}}
+setsebool\PYG{+w}{ }samba\PYGZus{}export\PYGZus{}all\PYGZus{}rw\PYG{+w}{ }\PYG{l+m}{1}
+setsebool\PYG{+w}{ }samba\PYGZus{}export\PYGZus{}all\PYGZus{}rw\PYG{+w}{ }\PYG{l+m}{1}\PYG{+w}{ }\PYGZhy{}P
+restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/srv/sambashare
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Start smb service\PYGZdq{}}
+systemctl\PYG{+w}{ }\PYG{n+nb}{enable}\PYG{+w}{ }smb
+systemctl\PYG{+w}{ }start\PYG{+w}{ }smb
+systemctl\PYG{+w}{ }restart\PYG{+w}{ }firewalld
+\end{Verbatim}

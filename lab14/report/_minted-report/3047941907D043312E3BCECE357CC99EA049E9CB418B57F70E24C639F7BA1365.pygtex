@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/vagrant/provision/server
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/vagrant/provision/server/smb/etc/samba
+cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/etc/samba/smb.conf\PYG{+w}{ }/vagrant/provision/server/smb/etc/samba/
+\end{Verbatim}

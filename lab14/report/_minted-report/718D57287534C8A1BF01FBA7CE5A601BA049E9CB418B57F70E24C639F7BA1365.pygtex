@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+dnf\PYG{+w}{ }\PYGZhy{}y\PYG{+w}{ }install\PYG{+w}{ }samba\PYGZhy{}client\PYG{+w}{ }cifs\PYGZhy{}utils
+\end{Verbatim}

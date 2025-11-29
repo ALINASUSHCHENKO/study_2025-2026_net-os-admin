@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+semanage\PYG{+w}{ }fcontext\PYG{+w}{ }\PYGZhy{}a\PYG{+w}{ }\PYGZhy{}t\PYG{+w}{ }samba\PYGZus{}share\PYGZus{}t\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}/srv/sambashare(/.*)?\PYGZdq{}}
+restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/srv/sambashare
+\end{Verbatim}

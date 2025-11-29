@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+setsebool\PYG{+w}{ }samba\PYGZus{}export\PYGZus{}all\PYGZus{}rw\PYG{+w}{ }\PYG{l+m}{1}
+setsebool\PYG{+w}{ }samba\PYGZus{}export\PYGZus{}all\PYGZus{}rw\PYG{+w}{ }\PYG{l+m}{1}\PYG{+w}{ }\PYGZhy{}P
+\end{Verbatim}

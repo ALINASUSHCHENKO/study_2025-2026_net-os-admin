@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+\PYG{n+nv}{LOGIN}\PYG{o}{=}dastarikov
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Provisioning script }\PYG{n+nv}{\PYGZdl{}0}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/mnt/samba
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Install needed packages\PYGZdq{}}
+dnf\PYG{+w}{ }\PYGZhy{}y\PYG{+w}{ }install\PYG{+w}{ }samba\PYGZhy{}client\PYG{+w}{ }cifs\PYGZhy{}utils
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Copy configuration files\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/vagrant/provision/client/smb/etc/*\PYG{+w}{ }/etc
+chown\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }root:root\PYG{+w}{ }/etc/samba/*
+restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/etc
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Configure firewall\PYGZdq{}}
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}add\PYGZhy{}service\PYG{+w}{ }samba\PYGZhy{}client\PYG{+w}{ }\PYGZhy{}\PYGZhy{}permanent
+firewall\PYGZhy{}cmd\PYG{+w}{ }\PYGZhy{}\PYGZhy{}reload
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Users and groups\PYGZdq{}}
+groupadd\PYG{+w}{ }\PYGZhy{}g\PYG{+w}{ }\PYG{l+m}{1010}\PYG{+w}{ }sambagroup
+usermod\PYG{+w}{ }\PYGZhy{}aG\PYG{+w}{ }sambagroup\PYG{+w}{ }\PYG{n+nv}{\PYGZdl{}LOGIN}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Mounting dirs\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/srv/sambashare
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}//server/sambashare /mnt/samba cifs user,rw,credentials=/etc/samba/smbusers,uid=user, gid=sambagroup,\PYGZus{}netdev 0 0\PYGZdq{}}\PYG{+w}{ }\PYGZgt{}\PYGZgt{}\PYG{+w}{ }/etc/fstab
+restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/etc
+umount\PYG{+w}{ }/mnt/samba
+mount\PYG{+w}{ }/mnt/samba
+\end{Verbatim}

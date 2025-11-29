@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/srv/sambashare
+touch\PYG{+w}{ }ansusenko@server.txt
+\end{Verbatim}

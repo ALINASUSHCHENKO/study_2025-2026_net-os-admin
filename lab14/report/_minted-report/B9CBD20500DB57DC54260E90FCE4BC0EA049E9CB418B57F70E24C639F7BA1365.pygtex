@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+touch\PYG{+w}{ }/etc/samba/smbusers
+chmod\PYG{+w}{ }\PYG{l+m}{600}\PYG{+w}{ }/etc/samba/smbusers
+\end{Verbatim}

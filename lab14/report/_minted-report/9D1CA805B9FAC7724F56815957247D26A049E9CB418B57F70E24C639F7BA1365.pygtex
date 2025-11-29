@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+chgrp\PYG{+w}{ }sambagroup\PYG{+w}{ }/srv/sambashare
+chmod\PYG{+w}{ }\PYG{n+nv}{g}\PYG{o}{=}rwx\PYG{+w}{ }/srv/sambashare
+\end{Verbatim}

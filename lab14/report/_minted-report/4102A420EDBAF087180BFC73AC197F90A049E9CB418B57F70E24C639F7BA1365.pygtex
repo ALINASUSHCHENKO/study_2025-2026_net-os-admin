@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/srv
+ls\PYG{+w}{ }\PYGZhy{}Z
+\end{Verbatim}

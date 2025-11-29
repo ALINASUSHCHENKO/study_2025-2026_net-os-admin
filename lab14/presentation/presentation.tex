@@ -1,0 +1,305 @@
+\input{preamble.tex}
+
+\title{Лабораторная работа № 14. \ Настройка файловых служб Samba}
+\author{Сущенко Алина \ НПИбд-01-23}
+\institute{Российский университет дружбы народов имени Патриса Лумумбы}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Цель работы}
+\begin{itemize}
+\item Приобретение навыков настройки доступа групп пользователей к общим ресурсам по протоколу SMB.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/01.png}
+\captionof{figure}{Создание группы sambagroup и добавления в нее пользователя ansusenko.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/02.png}
+\captionof{figure}{Изменение конфигурации samba на сервере.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/03.png}
+\captionof{figure}{Проверка правильности синтаксиса файла samba.conf.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/04.png}
+\captionof{figure}{Включение демона Samba.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/05.png}
+\captionof{figure}{Проверка наличия общего доступа к серверу.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/06.png}
+\captionof{figure}{Просмотр конфигурации межсетевого экрана Samba.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/07.png}
+\captionof{figure}{Настройка межсетевого экрана.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/08.png}
+\captionof{figure}{Настройка прав доступа для каталога с разделяемым ресурсом sambashare.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/09.png}
+\captionof{figure}{Настройка SELinux для каталога с разделяемым ресурсом smbshare.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/10.png}
+\captionof{figure}{Настройка разрешений через флаги SELinux.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/11.png}
+\captionof{figure}{Просмотр групп пользователя ansusenko.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/12.png}
+\captionof{figure}{Создание файла на разделяемой ресурсе.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера Samba}
+\includegraphics[width=0.8\textwidth]{../images/13.png}
+\captionof{figure}{Добавление ansusenko в базу пользователей Samba.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/14.png}
+\captionof{figure}{Просмотр конфигурации межсетевого экрана для клиента Samba.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/15.png}
+\captionof{figure}{Настройка межсетевого экрана клиента.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/16.png}
+\captionof{figure}{Создание аналогичной группы на клиенте и добавления в нее ansusenko.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/17.png}
+\captionof{figure}{Изменение конфигурации samba на клиенте.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/18.png}
+\captionof{figure}{Подключение к серверу под пользователем root.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/19.png}
+\captionof{figure}{Подключение к серверу под пользователем ansusenko.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенte}
+\includegraphics[width=0.8\textwidth]{../images/20.png}
+\captionof{figure}{Монтирование разделяемого ресурса на клиенте.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/21.png}
+\captionof{figure}{Проверка возможности создавать файлы на разделяемом ресурсе.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/22.png}
+\captionof{figure}{Отмонтирование каталога samba и создание файла smbusers.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/23.png}
+\captionof{figure}{Изменение файла /etc/fstab.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Монтирование файловой системы Samba на клиенте}
+\includegraphics[width=0.8\textwidth]{../images/24.png}
+\captionof{figure}{Настройка автоматического монтирования каталога для разделяемых ресурсов.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\item Минимальная конфигурация для smb.conf для создания общего ресурса, который предоставляет доступ к каталогу /data:
+\begin{verbatim}
+[data]
+path = /data
+browseable = yes
+read only = no
+guest ok = no
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item Настроить общий ресурс с доступом на запись всем пользователям, имеющим права на запись в файловой системе Linux:
+\begin{verbatim}
+[shared]
+path = /srv/samba/shared
+browseable = yes
+read only = no
+guest ok = no
+writeable = yes
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Ограничить доступ на запись к ресурсу только членам определённой группы:
+\begin{verbatim}
+[restricted]
+path = /srv/samba/restricted
+browseable = yes
+read only = no
+write list = @sambagroup
+valid users = @sambagroup
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item Переключатель SELinux для доступа к домашним каталогам через SMB:
+\begin{verbatim}
+setsebool -P samba_enable_home_dirs on
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{4}
+\item Ограничить доступ к ресурсу только узлам из сети 192.168.10.0/24:
+\begin{verbatim}
+[restricted]
+path = /srv/samba/restricted
+hosts allow = 192.168.10.0/24
+hosts deny = 0.0.0.0/0
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{5}
+\item Команда для отображения списка всех пользователей Samba на сервере:
+\begin{verbatim}
+pdbedit -L
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item Для доступа к многопользовательскому ресурсу пользователю необходимо:
+\begin{itemize}
+\item Иметь учётную запись на сервере Samba
+\item Быть добавленным в базу пользователей Samba (smbpasswd -a)
+\item Принадлежать к группе, которой разрешён доступ к ресурсу
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{7}
+\item Установить общий ресурс Samba как многопользовательскую учётную запись с alice в качестве минимальной учётной записи:
+\begin{verbatim}
+[multiuser]
+path = /srv/samba/multiuser
+browseable = yes
+read only = no
+guest ok = no
+force user = alice
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item Запретить пользователям просматривать учётные данные монтирования Samba в /etc/fstab:
+\begin{itemize}
+\item Использовать файл credentials с ограничением прав доступа (600)
+\item В /etc/fstab указать: \texttt{credentials=/etc/samba/credentials}
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ответы на контрольные вопросы}
+\begin{enumerate}
+\setcounter{enumi}{9}
+\item Команда для перечисления всех экспортируемых ресурсов Samba на сервере:
+\begin{verbatim}
+smbclient -L server_name -U username
+\end{verbatim}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Выводы}
+\begin{itemize}
+\item В результате лабораторной работы познакомились с настройкой доступа групп пользователей к общим ресурсам по протоколу SMB.
+\item Освоили настройку сервера Samba, управление доступом пользователей и групп.
+\item Изучили монтирование файловых систем Samba на клиенте и настройку автоматического монтирования.
+\end{itemize}
+\end{frame}
+\end{document}

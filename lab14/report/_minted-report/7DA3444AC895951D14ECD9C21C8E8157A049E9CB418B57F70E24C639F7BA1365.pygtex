@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{n+nv}{\PYGZdl{}TTL}\PYG{+w}{ }1D
+\PYG{+w}{  }@\PYG{+w}{       }IN\PYG{+w}{ }SOA\PYG{+w}{    }@\PYG{+w}{ }server.ansusenko.net.\PYG{+w}{ }\PYG{o}{(}
+\PYG{+w}{                    }\PYG{l+m}{2025102100}\PYG{+w}{             }\PYG{p}{;}\PYG{+w}{ }serial
+\PYG{+w}{                    }1D\PYG{+w}{                     }\PYG{p}{;}\PYG{+w}{ }refresh
+\PYG{+w}{                    }1H\PYG{+w}{                     }\PYG{p}{;}\PYG{+w}{ }retry
+\PYG{+w}{                    }1W\PYG{+w}{                     }\PYG{p}{;}\PYG{+w}{ }expire
+\PYG{+w}{                    }3H\PYG{+w}{ }\PYG{o}{)}\PYG{+w}{                   }\PYG{p}{;}\PYG{+w}{ }minimum
+\PYG{+w}{          }NS\PYG{+w}{        }@
+\PYG{+w}{          }A\PYG{+w}{         }\PYG{l+m}{192}.168.1.1
+\PYG{+w}{          }MX\PYG{+w}{ }\PYG{l+m}{10}\PYG{+w}{     }mail.ansusenko.net.
+\PYG{+w}{  }\PYG{n+nv}{\PYGZdl{}ORIGIN}\PYG{+w}{ }ansusenko.net.
+\PYG{+w}{  }server\PYG{+w}{  }A\PYG{+w}{         }\PYG{l+m}{192}.168.1.1
+\PYG{+w}{  }ns\PYG{+w}{      }A\PYG{+w}{         }\PYG{l+m}{192}.168.1.1
+\PYG{+w}{  }dhcp\PYG{+w}{    }A\PYG{+w}{         }\PYG{l+m}{192}.168.1.1
+\PYG{+w}{  }www\PYG{+w}{     }A\PYG{+w}{         }\PYG{l+m}{192}.168.1.1
+\PYG{+w}{  }mail\PYG{+w}{    }A\PYG{+w}{         }\PYG{l+m}{192}.168.1.1
+\end{Verbatim}

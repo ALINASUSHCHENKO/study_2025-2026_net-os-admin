@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+umount\PYG{+w}{ }/mnt/samba
+\end{Verbatim}

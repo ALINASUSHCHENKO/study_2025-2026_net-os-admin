@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/etc
+\PYG{+w}{    }restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/var/named
+\end{Verbatim}
