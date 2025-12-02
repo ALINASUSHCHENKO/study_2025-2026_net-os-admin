@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }touch\PYG{+w}{ }mail.sh
+\PYG{+w}{    }chmod\PYG{+w}{ }+x\PYG{+w}{ }mail.sh
+\end{Verbatim}

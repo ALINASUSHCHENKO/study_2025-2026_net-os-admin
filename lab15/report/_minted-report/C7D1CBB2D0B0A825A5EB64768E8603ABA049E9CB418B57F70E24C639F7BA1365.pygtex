@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }postconf\PYG{+w}{ }inet\PYGZus{}protocols
+\PYG{+w}{    }postconf\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}inet\PYGZus{}protocols = ipv4\PYGZsq{}}
+\end{Verbatim}

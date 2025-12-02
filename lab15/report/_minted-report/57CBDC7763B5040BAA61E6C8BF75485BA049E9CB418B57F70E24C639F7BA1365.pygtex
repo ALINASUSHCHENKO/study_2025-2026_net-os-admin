@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+systemctl\PYG{+w}{ }restart\PYG{+w}{ }rsyslog
+\end{Verbatim}

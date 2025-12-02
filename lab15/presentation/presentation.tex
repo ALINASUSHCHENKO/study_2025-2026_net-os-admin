@@ -1,0 +1,181 @@
+\input{preamble.tex}
+
+\title{Лабораторная работа № 15. \\ Настройка сетевого журналирования}
+\author{Сущенко Алина  \\ НПИбд-01-23}
+\institute{Российский университет дружбы народов имени Патриса Лумумбы}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Цель работы}
+\begin{itemize}
+    \item Получение навыков по работе с журналами системных событий.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка сервера сетевого журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/01.png}
+    \captionof{figure}{Создание файла конфигурации для сетевого хранения журналов на сервере.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Настройка сервера сетевого журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/02.png}
+    \captionof{figure}{Включение приема записей журнала по TCP-порту 514.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Настройка сервера сетевого журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/03.png}
+    \captionof{figure}{Проверка прослушиваемых rsyslog портов.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Настройка сервера сетевого журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/04.png}
+    \captionof{figure}{Настройка межсетевого экрана для приема сообщений по TCP-порту 514.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Настройка клиента сетевого журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/05.png}
+    \captionof{figure}{Создание файла конфигурации сетевого хранения журналов на клиенте.}
+    \centering
+    \includegraphics[width=\textwidth]{../images/06.png}
+    \captionof{figure}{Включение перенаправления сообщений журнала на сервер через TCP-порт 514.}
+    \centering
+    \includegraphics[width=\textwidth]{../images/07.png}
+    \captionof{figure}{Перезапуск службы rsyslog.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Просмотр журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/08.png}
+    \captionof{figure}{Просмотр файла журнала на сервере.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Просмотр журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/09.png}
+    \captionof{figure}{Установка просмотрщика журналов системных сообщений на сервер.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Просмотр журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/10.png}
+    \captionof{figure}{Просмотр общих логов на сервере.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Просмотр журнала}
+    \centering
+    \includegraphics[width=\textwidth]{../images/11.png}
+    \captionof{figure}{Логи на клиенте.}
+\end{frame}
+\begin{frame}
+
+\frametitle{Контрольный вопрос 1}
+\textbf{Вопрос:} Какой модуль rsyslog вы должны использовать для приёма сообщений от journald?
+
+\vspace{10pt}
+\textbf{Ответ:} Для приёма сообщений от journald в rsyslog следует использовать модуль \texttt{imjournal}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 2}
+\textbf{Вопрос:} Как называется устаревший модуль, который можно использовать для включения приёма сообщений журнала в rsyslog?
+
+\vspace{10pt}
+\textbf{Ответ:} Устаревший модуль, который можно использовать для этой цели, называется \texttt{imuxsock}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 3}
+\textbf{Вопрос:} Чтобы убедиться, что устаревший метод приёма сообщений из journald в rsyslog не используется, какой дополнительный параметр следует использовать?
+
+\vspace{10pt}
+\textbf{Ответ:} Чтобы отключить устаревший метод, в конфигурации модуля \texttt{imjournal} следует использовать параметр \texttt{omit\_synchronization}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 4}
+\textbf{Вопрос:} В каком конфигурационном файле содержатся настройки, которые позволяют вам настраивать работу журнала?
+
+\vspace{10pt}
+\textbf{Ответ:} Основные настройки работы системного журнала содержатся в файле \texttt{/etc/systemd/journald.conf}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 5}
+\textbf{Вопрос:} Каким параметром управляется пересылка сообщений из journald в rsyslog?
+
+\vspace{10pt}
+\textbf{Ответ:} Пересылка сообщений из journald в rsyslog управляется параметром \texttt{ForwardToSyslog} в файле \texttt{/etc/systemd/journald.conf}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 6}
+\textbf{Вопрос:} Какой модуль rsyslog вы можете использовать для включения сообщений из файла журнала, не созданного rsyslog?
+
+\vspace{10pt}
+\textbf{Ответ:} Для чтения сообщений из произвольного файла журнала используется модуль \texttt{imfile}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 7}
+\textbf{Вопрос:} Какой модуль rsyslog вам нужно использовать для пересылки сообщений в базу данных MariaDB?
+
+\vspace{10pt}
+\textbf{Ответ:} Для пересылки сообщений в базу данных MariaDB используется модуль вывода \texttt{ommysql}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 8}
+\textbf{Вопрос:} Какие две строки вам нужно включить в rsyslog.conf, чтобы позволить текущему журнальному серверу получать сообщения через TCP?
+
+\vspace{10pt}
+\textbf{Ответ:} Для приёма сообщений через TCP необходимо добавить в \texttt{rsyslog.conf} следующие строки:
+
+\texttt{module(load="imtcp")}
+
+\texttt{input(type="imtcp" port="514")}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос 9}
+\textbf{Вопрос:} Как настроить локальный брандмауэр, чтобы разрешить приём сообщений журнала через порт TCP 514?
+
+\vspace{10pt}
+\textbf{Ответ:} Для настройки firewalld можно использовать команды:
+
+\texttt{\# firewall-cmd --add-port=514/tcp --permanent}
+
+\texttt{\# firewall-cmd --reload}
+\end{frame}
+
+\begin{frame}
+\frametitle{Выводы}
+\begin{itemize}
+    \item В результате выполнений лабораторной работы получили навыки настройки сетевого хранения журналов системных событий.
+\end{itemize}
+\end{frame}
+\end{document}

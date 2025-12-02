@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+server.vm.provision\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}server netlog\PYGZdq{}},
+type:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}shell\PYGZdq{}},
+preserve\PYGZus{}order:\PYG{+w}{ }true,
+path:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}provision/server/netlog.sh\PYGZdq{}}
+client.vm.provision\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}client netlog\PYGZdq{}},
+type:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}shell\PYGZdq{}},
+preserve\PYGZus{}order:\PYG{+w}{ }true,
+path:\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}provision/client/netlog.sh\PYGZdq{}}
+\end{Verbatim}

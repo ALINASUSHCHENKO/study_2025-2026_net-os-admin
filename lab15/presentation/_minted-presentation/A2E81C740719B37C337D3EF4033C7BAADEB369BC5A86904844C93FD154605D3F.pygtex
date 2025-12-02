@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{    dnf \PYGZhy{}y install postfix}
+\PYG{x}{    dnf \PYGZhy{}y install s\PYGZhy{}nail}
+\end{Verbatim}

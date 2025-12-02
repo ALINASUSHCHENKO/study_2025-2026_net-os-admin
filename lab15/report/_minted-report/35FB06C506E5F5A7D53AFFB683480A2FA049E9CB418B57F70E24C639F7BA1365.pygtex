@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Provisioning script }\PYG{n+nv}{\PYGZdl{}0}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Install needed packages\PYGZdq{}}
+dnf\PYG{+w}{ }\PYGZhy{}y\PYG{+w}{ }install\PYG{+w}{ }lnav
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Copy configuration files\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/vagrant/provision/client/netlog/etc/*\PYG{+w}{ }/etc
+restorecon\PYG{+w}{ }\PYGZhy{}vR\PYG{+w}{ }/etc
+\PYG{n+nb}{echo}
+systemctl\PYG{+w}{ }restart\PYG{+w}{ }rsyslog
+\end{Verbatim}

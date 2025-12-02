@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Отправка письма с темой и текстом}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Текст письма\PYGZdq{}}\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }mail\PYG{+w}{ }\PYGZhy{}s\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Тема письма\PYGZdq{}}\PYG{+w}{ }user@example.com
+
+\PYG{c+c1}{\PYGZsh{} Отправка письма с содержимым файла}
+mail\PYG{+w}{ }\PYGZhy{}s\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Тема\PYGZdq{}}\PYG{+w}{ }user@example.com\PYG{+w}{ }\PYGZlt{}\PYG{+w}{ }file.txt
+
+\PYG{c+c1}{\PYGZsh{} Просмотр списка писем}
+mail
+
+\PYG{c+c1}{\PYGZsh{} Просмотр конкретного письма (внутри mail)}
+print\PYG{+w}{ }\PYG{l+m}{1}
+
+\PYG{c+c1}{\PYGZsh{} Удаление письма (внутри mail)}
+delete\PYG{+w}{ }\PYG{l+m}{1}
+
+\PYG{c+c1}{\PYGZsh{} Выход из mail с сохранением писем}
+quit
+
+\PYG{c+c1}{\PYGZsh{} Выход с удалением прочитанных писем}
+\PYG{n+nb}{exit}
+\end{Verbatim}

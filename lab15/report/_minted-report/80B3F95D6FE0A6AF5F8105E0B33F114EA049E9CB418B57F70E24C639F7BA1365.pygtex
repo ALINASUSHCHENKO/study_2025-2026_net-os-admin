@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/vagrant/provision/server
+touch\PYG{+w}{ }netlog.sh
+chmod\PYG{+w}{ }+x\PYG{+w}{ }netlog.sh
+\end{Verbatim}

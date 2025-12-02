@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+systemctl\PYG{+w}{ }restart\PYG{+w}{ }rsyslog
+lsof\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }grep\PYG{+w}{ }TCP
+\end{Verbatim}

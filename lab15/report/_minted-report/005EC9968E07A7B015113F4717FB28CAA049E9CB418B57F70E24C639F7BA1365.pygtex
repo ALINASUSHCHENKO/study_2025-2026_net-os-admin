@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/etc/rsyslog.d
+touch\PYG{+w}{ }netlog\PYGZhy{}client.conf
+\end{Verbatim}

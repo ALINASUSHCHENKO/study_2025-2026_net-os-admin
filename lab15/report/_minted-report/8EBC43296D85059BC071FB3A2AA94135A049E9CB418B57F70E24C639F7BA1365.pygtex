@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/vagrant/provision/client
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }/vagrant/provision/client/netlog/etc/rsyslog.d
+cp\PYG{+w}{ }\PYGZhy{}R\PYG{+w}{ }/etc/rsyslog.d/netlog\PYGZhy{}client.conf\PYG{+w}{ }/vagrant/provision/client/netlog/etc/rsyslog.d/
+\end{Verbatim}
